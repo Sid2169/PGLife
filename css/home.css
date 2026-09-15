@@ -1,15 +1,48 @@
 .hero-image {
     background-color: #e5e3e8;
-    background-image: url("../img/bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 60vh;
+    height: 70vh;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+#home-carousel {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+#home-carousel .carousel-inner {
+    height: 100%;
+}
+
+#home-carousel .carousel-item {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-bg-1 {
+    background-image: url("../img/bg.png");
+}
+
+.hero-bg-2 {
+    background-image: url("../img/bg2.png");
+}
+
+.hero-bg-3 {
+    background-image: url("../img/bg3.png");
 }
 
 .hero-overlay {
