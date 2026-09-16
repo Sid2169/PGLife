@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <!-- ============================================
+         Header / navigation bar
+         Brand, plus login-aware links (Dashboard /
+         user / Logout are shown when logged in via
+         common.js; Signup / Login otherwise).
+         ============================================ -->
     <div class="header sticky-top">
         <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
@@ -59,6 +65,12 @@
     <div id="loading">
     </div>
 
+    <!-- ============================================
+         Hero
+         Auto-cycling crossfade carousel (fixed
+         background) with a dim overlay, headline
+         and the city search bar on top.
+         ============================================ -->
     <div class="hero-image">
         <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false">
             <div class="carousel-inner">
@@ -84,6 +96,11 @@
         </div>
     </div>
 
+    <!-- ============================================
+         City selection
+         Clickable round city tiles linking to the
+         property list page for each city.
+         ============================================ -->
     <div class="page-container">
         <h1 class="home-title">Happiness per square foot</h1>
         <div class="city-tiles row">
@@ -130,6 +147,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Signup modal
+         ============================================ -->
     <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-heading" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -213,6 +233,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Login modal
+         ============================================ -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-heading" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -259,6 +282,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Footer
+         ============================================ -->
     <div class="footer">
         <div class="page-container footer-container">
             <div class="footer-cities">
@@ -279,6 +305,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Scripts
+         ============================================ -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>

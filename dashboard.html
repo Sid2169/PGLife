@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <!-- ============================================
+         Header / navigation bar
+         Same login-aware navbar as the other pages.
+         ============================================ -->
     <div class="header sticky-top">
         <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
@@ -70,6 +74,11 @@
         </ol>
     </nav>
 
+    <!-- ============================================
+         Dashboard
+         Shown only when the user is logged in
+         (common.js toggles the two blocks below).
+         ============================================ -->
     <div class="page-container d-none" id="dashboard-logged-out">
         <div class="dashboard-login-prompt">
             <i class="fas fa-user-lock"></i>
@@ -79,6 +88,7 @@
         </div>
     </div>
 
+    <!-- List of PGs the user is interested in. -->
     <div class="page-container" id="dashboard-content">
         <h1>Your Favourite PGs</h1>
         <p class="dashboard-subtitle">PGs you have marked as interested. Visit them and start your new journey!</p>
@@ -332,6 +342,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Signup modal
+         ============================================ -->
     <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-heading" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -415,6 +428,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Login modal
+         ============================================ -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-heading" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -461,6 +477,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Footer
+         ============================================ -->
     <div class="footer">
         <div class="page-container footer-container">
             <div class="footer-cities">
@@ -481,6 +500,9 @@
         </div>
     </div>
 
+    <!-- ============================================
+         Scripts
+         ============================================ -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>

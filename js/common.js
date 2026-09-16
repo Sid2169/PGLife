@@ -1,7 +1,16 @@
+/* common.js
+ * Shared behaviour for all PG Life pages.
+ * - Reflects the login state in the navbar
+ *   (Dashboard/Logout when logged in, Signup/Login otherwise).
+ * - Handles login, signup and logout flows, persisted in localStorage.
+ * - Gates the dashboard page behind a logged-in user.
+ */
 $(document).ready(function () {
+    /* Restore the session (if any) from a previous visit. */
     var loggedIn = localStorage.getItem("pgLifeLoggedIn") === "true";
     var userName = localStorage.getItem("pgLifeUserName");
 
+    /* Show/hide the correct navbar items based on the login state. */
     function updateNav() {
         if (loggedIn) {
             $(".logged-in").removeClass("d-none");
@@ -19,6 +28,7 @@ $(document).ready(function () {
         handleDashboardPage();
     }
 
+    /* On the dashboard page, show the content only for a logged-in user. */
     function handleDashboardPage() {
         if (window.location.pathname.indexOf("dashboard.html") > -1) {
             if (loggedIn) {
@@ -31,6 +41,7 @@ $(document).ready(function () {
         }
     }
 
+    /* Log the user in and persist the session. */
     function setLoggedIn(name) {
         loggedIn = true;
         userName = name || "User";
@@ -38,6 +49,7 @@ $(document).ready(function () {
         localStorage.setItem("pgLifeUserName", userName);
     }
 
+    /* Login form submission. */
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
         setLoggedIn($(this).find("input[name='email']").val());
@@ -45,6 +57,7 @@ $(document).ready(function () {
         updateNav();
     });
 
+    /* Signup form submission (also logs the user in). */
     $("#signup-form").on("submit", function (e) {
         e.preventDefault();
         setLoggedIn($(this).find("input[name='full_name']").val());
@@ -52,6 +65,7 @@ $(document).ready(function () {
         updateNav();
     });
 
+    /* Logout: clear the session and return home from the dashboard. */
     $("#logout-link").on("click", function (e) {
         e.preventDefault();
         loggedIn = false;
@@ -63,5 +77,6 @@ $(document).ready(function () {
         }
     });
 
+    /* Apply the login state once the page has loaded. */
     updateNav();
 });

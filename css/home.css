@@ -1,3 +1,10 @@
+/* ============================================
+   Hero section
+   Fixed background carousel that cycles through
+   the three hero images, with a dim overlay so
+   the headline and search bar stay readable.
+   ============================================ */
+
 .hero-image {
     background-color: #e5e3e8;
     height: 70vh;
@@ -8,6 +15,7 @@
     overflow: hidden;
 }
 
+/* The carousel fills the entire hero section. */
 #home-carousel {
     position: absolute;
     top: 0px;
@@ -20,6 +28,7 @@
     height: 100%;
 }
 
+/* Each slide is a fixed background image (crossfaded). */
 #home-carousel .carousel-item {
     position: absolute;
     top: 0px;
@@ -33,6 +42,7 @@
     background-attachment: fixed;
 }
 
+/* Individual hero backgrounds. */
 .hero-bg-1 {
     background-image: url("../img/bg.png");
 }
@@ -45,6 +55,7 @@
     background-image: url("../img/bg3.png");
 }
 
+/* Dims the carousel so the overlaying text is visible. */
 .hero-overlay {
     position: absolute;
     top: 0px;
@@ -54,6 +65,7 @@
     background-color: rgba(0, 0, 0, 0.35);
 }
 
+/* Text + search bar stacked above the carousel and overlay. */
 .hero-content {
     position: relative;
     z-index: 1;
@@ -87,6 +99,12 @@
     }
 }
 
+/* ============================================
+   Search bar
+   A single rounded pill: the input and the gray
+   icon button look like one continuous element.
+   ============================================ */
+
 .search-bar {
     max-width: 480px;
     margin: 0px auto;
@@ -104,6 +122,7 @@
     padding: 13px 18px;
 }
 
+/* Magnifying-glass button embedded in the right edge of the pill. */
 .search-bar .btn-search {
     background-color: #777777;
     color: #ffffff;
@@ -115,6 +134,12 @@
     align-items: center;
     justify-content: center;
 }
+
+/* ============================================
+   City selection tiles
+   Round city icons that link to the property
+   list page for each city.
+   ============================================ */
 
 .home-title {
     text-align: center;
@@ -136,6 +161,8 @@
     text-decoration: none;
 }
 
+/* Circular frame; the icon is scaled down so it
+   stays fully visible inside the circle. */
 .city-tile-image {
     width: 190px;
     height: 190px;
