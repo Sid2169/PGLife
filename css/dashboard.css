@@ -1,100 +1,40 @@
-/* ============================================
-   Dashboard page
-   Styling for the user info section, the
-   "Favourite PGs" cards and the login prompt
-   shown to logged-out visitors.
-   ============================================ */
-
-/* Page intro text below the heading. */
-.dashboard-subtitle {
-    color: #6f6f6f;
-    font-size: 14px;
-    margin-top: -32px;
-    margin-bottom: 32px;
+@media (max-width: 768px) {
+    .profile-img-container {
+        text-align: center;
+        padding-bottom: 32px;
+    }
 }
 
-/* Prompt shown instead of the dashboard when the user is not logged in. */
-.dashboard-login-prompt {
+.profile-img {
+    color: #7d7d7d;
+    font-size: 75px;
     text-align: center;
-    padding: 24px 0px;
-}
-
-.dashboard-login-prompt i {
-    font-size: 52px;
-    color: #4dc7bc;
-    margin-bottom: 16px;
-}
-
-.dashboard-login-prompt p {
-    color: #6f6f6f;
-    font-size: 14px;
-    margin-bottom: 24px;
-}
-
-.dashboard-login-prompt .btn {
-    font-size: 14px;
-    border-radius: 0px;
-    padding: 8px 32px;
-}
-
-/* ============================================
-   User info
-   First section of the dashboard: an avatar
-   and a greeting for the logged-in user.
-   ============================================ */
-
-.user-info-card {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 2px;
-    padding: 16px 24px;
-    margin-bottom: 32px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.user-info-avatar {
-    width: 64px;
-    height: 64px;
+    border: 1px solid #e4e4e4;
     border-radius: 50%;
-    background-color: #4dc7bc;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin-right: 20px;
-    flex-shrink: 0;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
 }
 
-.user-info-title {
-    color: #6f6f6f;
-    font-size: 13px;
+.profile .name {
+    font-weight: bold;
 }
 
-.user-info-name {
-    color: #373737;
-    font-size: 20px;
-    font-weight: 600;
-    text-transform: capitalize;
+.edit-profile {
+    font-size: 10px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.user-info-subtitle {
-    color: #6f6f6f;
-    font-size: 13px;
+.my-interested-properties {
+    background-color: #fcfaf7;
 }
-
-/* ============================================
-   Favourite PG cards
-   Same horizontal layout as the property list
-   page: image on the left, details on the right.
-   ============================================ */
 
 .property-card {
     background-color: #ffffff;
     border-radius: 2px;
     padding: 15px 0px;
-    margin: 0px auto 20px;
+    margin: 20px auto;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -103,7 +43,6 @@
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* Image on the left of the card. */
 .image-container {
     text-align: center;
 }
@@ -119,16 +58,15 @@
     max-width: 300px;
 }
 
-/* Star rating (matches the property list page). */
 .star-container i {
     color: #EA322E;
     font-size: 10px;
     margin-right: 6px;
 }
 
-/* "Interested" heart. */
 .interested-container {
     text-align: center;
+    padding: 8px 16px;
 }
 
 .interested-container i {
@@ -141,7 +79,6 @@
     font-size: 10px;
 }
 
-/* Property name, address and gender filter. */
 .detail-container {
     padding-bottom: 10px;
 }
@@ -149,15 +86,6 @@
 .property-name {
     font-size: 18px;
     font-weight: 600;
-}
-
-.property-name a {
-    color: #373737;
-}
-
-.property-name a:hover {
-    color: #4dc7bc;
-    text-decoration: none;
 }
 
 .property-address {
@@ -170,7 +98,6 @@
     width: 40px;
 }
 
-/* Rent on the left, Remove button on the right. */
 .rent-container {
     display: flex;
     align-items: center;
@@ -192,11 +119,4 @@
     border-radius: 0px;
     width: 140px;
     float: right;
-}
-
-@media (max-width: 575px) {
-    .button-container .btn {
-        width: 100%;
-        float: none;
-    }
 }

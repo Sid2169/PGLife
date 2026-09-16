@@ -1,50 +1,48 @@
 <?php
-require("includes/database_connect.php");
+session_start();
+require "includes/database_connect.php";
 
-$city = $_GET["city"];
-if (empty($city)) {
-    $city = "Mumbai";
-}
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
+$city_name = $_GET["city"];
 
-$sql_city_id = "SELECT * FROM cities WHERE name='$city'";
-$result_city_id = mysqli_query($conn, $sql_city_id);
-if (!$result_city_id) {
+$sql_1 = "SELECT * FROM cities WHERE name = '$city_name'";
+$result_1 = mysqli_query($conn, $sql_1);
+if (!$result_1) {
     echo "Something went wrong!";
     return;
 }
-$row = mysqli_fetch_assoc($result_city_id);
-$city_id = $row["id"];
+$city = mysqli_fetch_assoc($result_1);
+if (!$city) {
+    echo "Sorry! We do not have any PG listed in this city.";
+    return;
+}
+$city_id = $city['id'];
 
-$sql = "SELECT *, (SELECT COUNT(*) 
-            FROM interested_users_properties iup 
-            WHERE iup.property_id = p.id) AS total_interested
-        FROM properties p
-        WHERE p.city_id = $city_id";
-$result = mysqli_query($conn, $sql);
-if (!$result) {
+$sql_2 = "SELECT * FROM properties WHERE city_id = $city_id";
+$result_2 = mysqli_query($conn, $sql_2);
+if (!$result_2) {
     echo "Something went wrong!";
     return;
 }
+$properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
 
-$sql_images = "SELECT * FROM property_images";
-$result_images = mysqli_query($conn, $sql_images);
-if (!$result_images) {
+$sql_3 = "SELECT *
+            FROM interested_users_properties iup
+            INNER JOIN properties p ON iup.property_id = p.id
+            WHERE p.city_id = $city_id";
+$result_3 = mysqli_query($conn, $sql_3);
+if (!$result_3) {
     echo "Something went wrong!";
     return;
 }
-$images = [];
-while ($row = mysqli_fetch_assoc($result_images)) {
-    $images[$row["property_id"]][] = $row["image"];
-}
+$interested_users_properties = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
 
 function rating_to_stars($rating) {
     $output = "";
-    $num = (int)$rating;
-    $frac = $rating - $num;
     for ($i = 0; $i < 5; $i++) {
-        if ($i < $num) {
+        if ($rating >= $i + 0.8) {
             $output .= '<i class="fas fa-star"></i>';
-        } elseif ($i == $num && $frac >= 0.5) {
+        } elseif ($rating >= $i + 0.3) {
             $output .= '<i class="fas fa-star-half-alt"></i>';
         } else {
             $output .= '<i class="far fa-star"></i>';
@@ -57,11 +55,15 @@ function rating_to_stars($rating) {
 <html lang="en">
 
 <head>
-    <?php include("includes/head_links.php"); ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Best PG's in <?php echo $city_name; ?> | PG Life</title>
+
+    <?php include "includes/head_links.php"; ?>
+    <link href="css/property_list.css" rel="stylesheet" />
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
+    <?php include "includes/header.php"; ?>
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
@@ -69,7 +71,7 @@ function rating_to_stars($rating) {
                 <a href="index.php">Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <?php echo $city; ?>
+                <?php echo $city_name; ?>
             </li>
         </ol>
     </nav>
@@ -90,60 +92,68 @@ function rating_to_stars($rating) {
             </div>
         </div>
 
-        <?php
-        while ($property = mysqli_fetch_assoc($result)) {
-            if (isset($images[$property["id"]])) {
-                $first_image = $images[$property["id"]][0];
-            } else {
-                $first_image = "";
+        <?php foreach ($properties as $property) {
+            $property_images = glob("img/properties/" . $property['id'] . "/*");
+            $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
+            $total_rating = round($total_rating, 1);
+            $stars = rating_to_stars($total_rating);
+
+            $interested_users_count = 0;
+            $is_interested = false;
+            foreach ($interested_users_properties as $iup) {
+                if ($iup['property_id'] == $property['id']) {
+                    $interested_users_count++;
+                    if ($iup['user_id'] == $user_id) $is_interested = true;
+                }
             }
-            $rating = (($property["rating_clean"] + $property["rating_food"] + $property["rating_safety"]) / 3);
-            $rating = round($rating * 2) / 2;
-            $stars = rating_to_stars($rating);
-            ?>
+        ?>
             <div class="property-card row">
                 <div class="image-container col-md-4">
-                    <img src="<?php echo "img/properties/" . $property["id"] . "/" . $first_image; ?>" />
+                    <img src="<?= $property_images[0] ?>" />
                 </div>
                 <div class="content-container col-md-8">
                     <div class="row no-gutters justify-content-between">
-                        <div class="star-container" title="<?php echo $rating; ?>">
-                            <?php echo $stars; ?>
+                        <div class="star-container" title="<?= $total_rating ?>">
+                            <?= $stars ?>
                         </div>
                         <div class="interested-container">
-                            <i class="far fa-heart"></i>
-                            <div class="interested-text"><?php echo $property["total_interested"]; ?> interested</div>
+                            <?php if ($is_interested): ?>
+                                <i class="fas fa-heart"></i>
+                            <?php else: ?>
+                                <i class="far fa-heart"></i>
+                            <?php endif; ?>
+                            <div class="interested-text"><?= $interested_users_count ?> interested</div>
                         </div>
                     </div>
                     <div class="detail-container">
-                        <div class="property-name"><?php echo $property["name"]; ?></div>
-                        <div class="property-address"><?php echo $property["address"]; ?></div>
+                        <div class="property-name"><?= $property['name'] ?></div>
+                        <div class="property-address"><?= $property['address'] ?></div>
                         <div class="property-gender">
                             <?php
-                            $gender = $property["gender"];
-                            if ($gender == "male") {
-                                $gender_img = "male";
-                            } elseif ($gender == "female") {
-                                $gender_img = "female";
-                            } else {
-                                $gender_img = "unisex";
-                            }
+                            if ($property['gender'] == "male") echo '<img src="img/male.png" />';
+                            elseif ($property['gender'] == "female") echo '<img src="img/female.png" />';
+                            else echo '<img src="img/unisex.png" />';
                             ?>
-                            <img src="img/<?php echo $gender_img; ?>.png" />
                         </div>
                     </div>
                     <div class="row no-gutters">
                         <div class="rent-container col-6">
-                            <div class="rent">Rs <?php echo number_format($property["rent"]); ?>/-</div>
+                            <div class="rent">₹ <?= number_format($property['rent']) ?>/-</div>
                             <div class="rent-unit">per month</div>
                         </div>
                         <div class="button-container col-6">
-                            <a href="property_detail.php?property_id=<?php echo $property["id"]; ?>" class="btn btn-primary">View</a>
+                            <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                         </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
+
+        <?php if (count($properties) == 0): ?>
+            <div class="no-property-container">
+                <p>No PG to list</p>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="filter-heading" aria-hidden="true">
@@ -155,26 +165,16 @@ function rating_to_stars($rating) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
                 <div class="modal-body">
                     <h5>Gender</h5>
                     <hr />
                     <div>
-                        <button class="btn btn-outline-dark btn-active">
-                            No Filter
-                        </button>
-                        <button class="btn btn-outline-dark">
-                            <i class="fas fa-venus-mars"></i>Unisex
-                        </button>
-                        <button class="btn btn-outline-dark">
-                            <i class="fas fa-mars"></i>Male
-                        </button>
-                        <button class="btn btn-outline-dark">
-                            <i class="fas fa-venus"></i>Female
-                        </button>
+                        <button class="btn btn-outline-dark btn-active">No Filter</button>
+                        <button class="btn btn-outline-dark"><i class="fas fa-venus-mars"></i>Unisex</button>
+                        <button class="btn btn-outline-dark"><i class="fas fa-mars"></i>Male</button>
+                        <button class="btn btn-outline-dark"><i class="fas fa-venus"></i>Female</button>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-success">Okay</button>
                 </div>
@@ -182,10 +182,11 @@ function rating_to_stars($rating) {
         </div>
     </div>
 
-    <?php include("includes/signup_modal.php"); ?>
-    <?php include("includes/login_modal.php"); ?>
-
-    <?php include("includes/footer.php"); ?>
+    <?php
+    include "includes/signup_modal.php";
+    include "includes/login_modal.php";
+    include "includes/footer.php";
+    ?>
 </body>
 
 </html>

@@ -1,22 +1,20 @@
 <?php
-require("includes/database_connect.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php include("includes/head_links.php"); ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | PG Life</title>
+
+    <?php include "includes/head_links.php"; ?>
+    <link href="css/home.css" rel="stylesheet" />
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
+    <?php include "includes/header.php"; ?>
 
-    <!-- ============================================
-         Hero
-         Auto-cycling crossfade carousel (fixed
-         background) with a dim overlay, headline
-         and the city search bar on top.
-         ============================================ -->
     <div class="hero-image">
         <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false">
             <div class="carousel-inner">
@@ -42,11 +40,6 @@ require("includes/database_connect.php");
         </div>
     </div>
 
-    <!-- ============================================
-         City selection
-         Clickable round city tiles linking to the
-         property list page for each city.
-         ============================================ -->
     <div class="page-container">
         <h1 class="home-title">Happiness per square foot</h1>
         <div class="city-tiles row">
@@ -67,11 +60,11 @@ require("includes/database_connect.php");
                 </a>
             </div>
             <div class="city-tile col-6 col-md-4">
-                <a href="property_list.php?city=Bangalore">
+                <a href="property_list.php?city=Bengaluru">
                     <div class="city-tile-image">
-                        <img src="img/bangalore.png" alt="Bangalore" />
+                        <img src="img/bangalore.png" alt="Bengaluru" />
                     </div>
-                    <p>PG in Bangalore</p>
+                    <p>PG in Bengaluru</p>
                 </a>
             </div>
             <div class="city-tile col-6 col-md-4">
@@ -82,21 +75,14 @@ require("includes/database_connect.php");
                     <p>PG in Hyderabad</p>
                 </a>
             </div>
-            <div class="city-tile col-6 col-md-4">
-                <a href="property_list.php?city=Chennai">
-                    <div class="city-tile-image">
-                        <img src="img/chennai.png" alt="Chennai" />
-                    </div>
-                    <p>PG in Chennai</p>
-                </a>
-            </div>
         </div>
     </div>
 
-    <?php include("includes/signup_modal.php"); ?>
-    <?php include("includes/login_modal.php"); ?>
-
-    <?php include("includes/footer.php"); ?>
+    <?php
+    include "includes/signup_modal.php";
+    include "includes/login_modal.php";
+    include "includes/footer.php";
+    ?>
 </body>
 
 </html>

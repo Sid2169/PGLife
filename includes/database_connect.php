@@ -1,14 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pglife";
+$conn = mysqli_connect("127.0.0.1", "root", "password", "pglife");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL! Please contact the admin.";
+    return;
 }
-
-session_start();
-?>
