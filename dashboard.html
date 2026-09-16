@@ -88,254 +88,255 @@
         </div>
     </div>
 
-    <!-- List of PGs the user is interested in. -->
+    <!-- ============================================
+         User info
+         First section: greeting card for the
+         logged-in user (name filled by common.js).
+         ============================================ -->
     <div class="page-container" id="dashboard-content">
+        <div class="user-info-card">
+            <div class="user-info-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info-details">
+                <div class="user-info-title">Welcome back!</div>
+                <div class="user-info-name" id="dashboard-user-name">User</div>
+                <div class="user-info-subtitle">The people you meet matter. So does your room.</div>
+            </div>
+        </div>
+
         <h1>Your Favourite PGs</h1>
         <p class="dashboard-subtitle">PGs you have marked as interested. Visit them and start your new journey!</p>
 
-        <div class="row">
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/1/1d4f0757fdb86d5f.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/1/1d4f0757fdb86d5f.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="4.5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="4.5">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">Navkar Paying Guest</a>
-                            </div>
-                            <div class="property-address">44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058</div>
-                            <div class="property-gender">
-                                <img src="img/male.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 9,500/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">Navkar Paying Guest</a>
+                    </div>
+                    <div class="property-address">44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058</div>
+                    <div class="property-gender">
+                        <img src="img/male.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 9,500/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/1/eace7b9114fd6046.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/1/eace7b9114fd6046.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="4.8">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="4.8">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">Ganpati Paying Guest</a>
-                            </div>
-                            <div class="property-address">Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066</div>
-                            <div class="property-gender">
-                                <img src="img/unisex.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 8,500/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">Ganpati Paying Guest</a>
+                    </div>
+                    <div class="property-address">Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066</div>
+                    <div class="property-gender">
+                        <img src="img/unisex.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 8,500/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/1/46ebbb537aa9fb0a.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/1/46ebbb537aa9fb0a.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="3.5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="3.5">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">PG for Girls Borivali West</a>
-                            </div>
-                            <div class="property-address">Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092</div>
-                            <div class="property-gender">
-                                <img src="img/female.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 8,000/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">PG for Girls Borivali West</a>
+                    </div>
+                    <div class="property-address">Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092</div>
+                    <div class="property-gender">
+                        <img src="img/female.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 8,000/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/2/1dcfc57947b5c712.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/2/1dcfc57947b5c712.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="4.0">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="4.0">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">Sunrise Paying Guest</a>
-                            </div>
-                            <div class="property-address">48, Palam Vihar, Dwarka, New Delhi, Delhi 110075</div>
-                            <div class="property-gender">
-                                <img src="img/unisex.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 10,500/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">Sunrise Paying Guest</a>
+                    </div>
+                    <div class="property-address">48, Palam Vihar, Dwarka, New Delhi, Delhi 110075</div>
+                    <div class="property-gender">
+                        <img src="img/unisex.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 10,500/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/2/45109c3e5c063d21.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/2/45109c3e5c063d21.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="3.8">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="3.8">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">Ashiana PG</a>
-                            </div>
-                            <div class="property-address">Plot 13, Sector 21, Rohini, New Delhi, Delhi 110086</div>
-                            <div class="property-gender">
-                                <img src="img/male.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 7,500/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">Ashiana PG</a>
+                    </div>
+                    <div class="property-address">Plot 13, Sector 21, Rohini, New Delhi, Delhi 110086</div>
+                    <div class="property-gender">
+                        <img src="img/male.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 7,500/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-image">
-                        <img src="img/properties/2/6343da10f7206b0f.jpg" />
+        <div class="property-card row">
+            <div class="image-container col-md-4">
+                <img src="img/properties/2/6343da10f7206b0f.jpg" />
+            </div>
+            <div class="content-container col-md-8">
+                <div class="row no-gutters justify-content-between">
+                    <div class="star-container" title="4.6">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <div class="dashboard-card-content">
-                        <div class="row no-gutters justify-content-between">
-                            <div class="star-container" title="4.6">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="interested-container" title="Interested">
-                                <i class="fas fa-heart"></i>
-                                <div class="interested-text">Interested</div>
-                            </div>
-                        </div>
-                        <div class="detail-container">
-                            <div class="property-name">
-                                <a href="property_detail.html">Comfort Stay PG</a>
-                            </div>
-                            <div class="property-address">2nd Cross, Koramangala 4th Block, Bengaluru, Karnataka 560034</div>
-                            <div class="property-gender">
-                                <img src="img/female.png" />
-                            </div>
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="rent-container col-6">
-                                <div class="rent">Rs 11,000/-</div>
-                                <div class="rent-unit">per month</div>
-                            </div>
-                            <div class="button-container col-6">
-                                <a href="property_detail.html" class="btn btn-danger">Remove</a>
-                            </div>
-                        </div>
+                    <div class="interested-container" title="Interested">
+                        <i class="fas fa-heart"></i>
+                        <div class="interested-text">Interested</div>
+                    </div>
+                </div>
+                <div class="detail-container">
+                    <div class="property-name">
+                        <a href="property_detail.html">Comfort Stay PG</a>
+                    </div>
+                    <div class="property-address">2nd Cross, Koramangala 4th Block, Bengaluru, Karnataka 560034</div>
+                    <div class="property-gender">
+                        <img src="img/female.png" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="rent-container col-6">
+                        <div class="rent">Rs 11,000/-</div>
+                        <div class="rent-unit">per month</div>
+                    </div>
+                    <div class="button-container col-6">
+                        <a href="property_detail.html" class="btn btn-danger">Remove</a>
                     </div>
                 </div>
             </div>

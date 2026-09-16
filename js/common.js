@@ -17,7 +17,7 @@ $(document).ready(function () {
             $("#signup-nav").addClass("d-none");
             $("#vl-signup").addClass("d-none");
             $("#login-nav").addClass("d-none");
-            $("#nav-user").text(userName || "User");
+            $("#nav-user, #dashboard-user-name").text(userName || "User");
         } else {
             $(".logged-in").addClass("d-none");
             $("#signup-nav").removeClass("d-none");

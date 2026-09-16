@@ -1,7 +1,8 @@
 /* ============================================
    Dashboard page
-   Styling for the "Favourite PGs" cards and the
-   login prompt shown to logged-out visitors.
+   Styling for the user info section, the
+   "Favourite PGs" cards and the login prompt
+   shown to logged-out visitors.
    ============================================ */
 
 /* Page intro text below the heading. */
@@ -37,33 +38,85 @@
 }
 
 /* ============================================
-   Favourite PG cards
-   A grid of cards showing an image, rating,
-   address, rent and a Remove action.
+   User info
+   First section of the dashboard: an avatar
+   and a greeting for the logged-in user.
    ============================================ */
 
-.dashboard-card {
+.user-info-card {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
     border-radius: 2px;
-    padding: 0px;
-    margin-bottom: 20px;
+    padding: 16px 24px;
+    margin-bottom: 32px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.dashboard-card:focus,
-.dashboard-card:hover {
+.user-info-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #4dc7bc;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.user-info-title {
+    color: #6f6f6f;
+    font-size: 13px;
+}
+
+.user-info-name {
+    color: #373737;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.user-info-subtitle {
+    color: #6f6f6f;
+    font-size: 13px;
+}
+
+/* ============================================
+   Favourite PG cards
+   Same horizontal layout as the property list
+   page: image on the left, details on the right.
+   ============================================ */
+
+.property-card {
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 15px 0px;
+    margin: 0px auto 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.property-card:focus,
+.property-card:hover {
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* Card image (fixed height so all cards align). */
-.dashboard-card-image img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+/* Image on the left of the card. */
+.image-container {
+    text-align: center;
 }
 
-.dashboard-card-content {
-    padding: 15px;
+@media (max-width: 768px) {
+    .image-container {
+        padding-bottom: 12px;
+    }
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 300px;
 }
 
 /* Star rating (matches the property list page). */
