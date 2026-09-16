@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | PG Life</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/home.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- ============================================
+         Header / navigation bar
+         Brand, plus login-aware links (Dashboard /
+         user / Logout are shown when logged in via
+         common.js; Signup / Login otherwise).
+         ============================================ -->
+    <div class="header sticky-top">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="my-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item logged-in d-none">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                        </a>
+                    </li>
+                    <div class="nav-vl logged-in d-none"></div>
+                    <li class="nav-item logged-in d-none">
+                        <span class="nav-name" id="nav-user">User</span>
+                    </li>
+                    <div class="nav-vl logged-in d-none"></div>
+                    <li class="nav-item logged-in d-none">
+                        <a class="nav-link" href="#" id="logout-link">
+                            <i class="fas fa-sign-out-alt"></i>Logout
+                        </a>
+                    </li>
+
+                    <li class="nav-item" id="signup-nav">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#signup-modal">
+                            <i class="fas fa-user"></i>Signup
+                        </a>
+                    </li>
+                    <div class="nav-vl" id="vl-signup"></div>
+                    <li class="nav-item" id="login-nav">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">
+                            <i class="fas fa-sign-in-alt"></i>Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="loading">
+    </div>
+
+    <!-- ============================================
+         Hero
+         Auto-cycling crossfade carousel (fixed
+         background) with a dim overlay, headline
+         and the city search bar on top.
+         ============================================ -->
+    <div class="hero-image">
+        <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false">
+            <div class="carousel-inner">
+                <div class="carousel-item hero-bg-1 active"></div>
+                <div class="carousel-item hero-bg-2"></div>
+                <div class="carousel-item hero-bg-3"></div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Make yourself at home</h2>
+            <p>Find safe, affordable and fully furnished PGs near your college.</p>
+            <form class="search-bar" role="form">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search your city, e.g. Mumbai" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-search" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
+         City selection
+         Clickable round city tiles linking to the
+         property list page for each city.
+         ============================================ -->
+    <div class="page-container">
+        <h1 class="home-title">Happiness per square foot</h1>
+        <div class="city-tiles row">
+            <div class="city-tile col-6 col-md-4">
+                <a href="property_list.html">
+                    <div class="city-tile-image">
+                        <img src="img/delhi.png" alt="Delhi" />
+                    </div>
+                    <p>PG in Delhi</p>
+                </a>
+            </div>
+            <div class="city-tile col-6 col-md-4">
+                <a href="property_list.html">
+                    <div class="city-tile-image">
+                        <img src="img/mumbai.png" alt="Mumbai" />
+                    </div>
+                    <p>PG in Mumbai</p>
+                </a>
+            </div>
+            <div class="city-tile col-6 col-md-4">
+                <a href="property_list.html">
+                    <div class="city-tile-image">
+                        <img src="img/bangalore.png" alt="Bangalore" />
+                    </div>
+                    <p>PG in Bangalore</p>
+                </a>
+            </div>
+            <div class="city-tile col-6 col-md-4">
+                <a href="property_list.html">
+                    <div class="city-tile-image">
+                        <img src="img/hyderabad.png" alt="Hyderabad" />
+                    </div>
+                    <p>PG in Hyderabad</p>
+                </a>
+            </div>
+            <div class="city-tile col-6 col-md-4">
+                <a href="property_list.html">
+                    <div class="city-tile-image">
+                        <img src="img/chennai.png" alt="Chennai" />
+                    </div>
+                    <p>PG in Chennai</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Signup modal
+         ============================================ -->
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-heading" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signup-heading">Signup with PGLife</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="signup-form" class="form" role="form">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" name="full_name" placeholder="Full Name" maxlength="30" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-phone-alt"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" name="phone" placeholder="Phone Number" maxlength="10" minlength="10" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Password" minlength="6" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-university"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" name="college_name" placeholder="College Name" maxlength="150" required>
+                        </div>
+
+                        <div class="form-group">
+                            <span>I'm a</span>
+                            <input type="radio" class="ml-3" id="gender-male" name="gender" value="male" /> Male
+                            <label for="gender-male">
+                            </label>
+                            <input type="radio" class="ml-3" id="gender-female" name="gender" value="female" />
+                            <label for="gender-female">
+                                Female
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-primary">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <span>Already have an account?
+                        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Login</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Login modal
+         ============================================ -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-heading" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="login-heading">Login with PGLife</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="login-form" class="form" role="form">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="Password" minlength="6" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <span>
+                        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#signup-modal">Click here</a>
+                        to register a new account
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Footer
+         ============================================ -->
+    <div class="footer">
+        <div class="page-container footer-container">
+            <div class="footer-cities">
+                <div class="footer-city">
+                    <a href="property_list.html">PG in Delhi</a>
+                </div>
+                <div class="footer-city">
+                    <a href="property_list.html">PG in Mumbai</a>
+                </div>
+                <div class="footer-city">
+                    <a href="property_list.html">PG in Bangalore</a>
+                </div>
+                <div class="footer-city">
+                    <a href="property_list.html">PG in Hyderabad</a>
+                </div>
+            </div>
+            <div class="footer-copyright">© 2020 Copyright PG Life </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Scripts
+         ============================================ -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</body>
+
+</html>

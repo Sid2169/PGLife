@@ -1,0 +1,202 @@
+/* ============================================
+   Hero section
+   Fixed background carousel that cycles through
+   the three hero images, with a dim overlay so
+   the headline and search bar stay readable.
+   ============================================ */
+
+.hero-image {
+    background-color: #e5e3e8;
+    height: 70vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* The carousel fills the entire hero section. */
+#home-carousel {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+#home-carousel .carousel-inner {
+    height: 100%;
+}
+
+/* Each slide is a fixed background image (crossfaded). */
+#home-carousel .carousel-item {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Individual hero backgrounds. */
+.hero-bg-1 {
+    background-image: url("../img/bg.png");
+}
+
+.hero-bg-2 {
+    background-image: url("../img/bg2.png");
+}
+
+.hero-bg-3 {
+    background-image: url("../img/bg3.png");
+}
+
+/* Dims the carousel so the overlaying text is visible. */
+.hero-overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Text + search bar stacked above the carousel and overlay. */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    max-width: 640px;
+    padding: 24px;
+}
+
+.hero-content h2 {
+    font-size: 34px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 26px;
+    }
+}
+
+.hero-content p {
+    font-size: 17px;
+    margin: 12px 0px 24px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 768px) {
+    .hero-content p {
+        font-size: 15px;
+    }
+}
+
+/* ============================================
+   Search bar
+   A single rounded pill: the input and the gray
+   icon button look like one continuous element.
+   ============================================ */
+
+.search-bar {
+    max-width: 480px;
+    margin: 0px auto;
+}
+
+.search-bar .input-group {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.search-bar .form-control {
+    border: none;
+    border-radius: 0px;
+    padding: 13px 18px;
+}
+
+/* Magnifying-glass button embedded in the right edge of the pill. */
+.search-bar .btn-search {
+    background-color: #777777;
+    color: #ffffff;
+    border: none;
+    border-radius: 0px;
+    padding: 13px 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   City selection tiles
+   Round city icons that link to the property
+   list page for each city.
+   ============================================ */
+
+.home-title {
+    text-align: center;
+}
+
+.city-tiles {
+    justify-content: center;
+    margin: 0px auto;
+    max-width: 720px;
+}
+
+.city-tile {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.city-tile a {
+    color: #373737;
+    text-decoration: none;
+}
+
+/* Circular frame; the icon is scaled down so it
+   stays fully visible inside the circle. */
+.city-tile-image {
+    width: 190px;
+    height: 190px;
+    margin: 0px auto;
+    border-radius: 50%;
+    border: 3px solid #e5e3e8;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.city-tile:hover .city-tile-image,
+.city-tile:focus .city-tile-image {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.city-tile-image img {
+    width: 68%;
+    height: 68%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .city-tile-image {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.city-tile p {
+    margin-top: 16px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}

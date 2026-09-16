@@ -1,0 +1,202 @@
+/* ============================================
+   Dashboard page
+   Styling for the user info section, the
+   "Favourite PGs" cards and the login prompt
+   shown to logged-out visitors.
+   ============================================ */
+
+/* Page intro text below the heading. */
+.dashboard-subtitle {
+    color: #6f6f6f;
+    font-size: 14px;
+    margin-top: -32px;
+    margin-bottom: 32px;
+}
+
+/* Prompt shown instead of the dashboard when the user is not logged in. */
+.dashboard-login-prompt {
+    text-align: center;
+    padding: 24px 0px;
+}
+
+.dashboard-login-prompt i {
+    font-size: 52px;
+    color: #4dc7bc;
+    margin-bottom: 16px;
+}
+
+.dashboard-login-prompt p {
+    color: #6f6f6f;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.dashboard-login-prompt .btn {
+    font-size: 14px;
+    border-radius: 0px;
+    padding: 8px 32px;
+}
+
+/* ============================================
+   User info
+   First section of the dashboard: an avatar
+   and a greeting for the logged-in user.
+   ============================================ */
+
+.user-info-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 16px 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.user-info-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #4dc7bc;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.user-info-title {
+    color: #6f6f6f;
+    font-size: 13px;
+}
+
+.user-info-name {
+    color: #373737;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.user-info-subtitle {
+    color: #6f6f6f;
+    font-size: 13px;
+}
+
+/* ============================================
+   Favourite PG cards
+   Same horizontal layout as the property list
+   page: image on the left, details on the right.
+   ============================================ */
+
+.property-card {
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 15px 0px;
+    margin: 0px auto 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.property-card:focus,
+.property-card:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Image on the left of the card. */
+.image-container {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        padding-bottom: 12px;
+    }
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Star rating (matches the property list page). */
+.star-container i {
+    color: #EA322E;
+    font-size: 10px;
+    margin-right: 6px;
+}
+
+/* "Interested" heart. */
+.interested-container {
+    text-align: center;
+}
+
+.interested-container i {
+    color: #EA322E;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.interested-text {
+    font-size: 10px;
+}
+
+/* Property name, address and gender filter. */
+.detail-container {
+    padding-bottom: 10px;
+}
+
+.property-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.property-name a {
+    color: #373737;
+}
+
+.property-name a:hover {
+    color: #4dc7bc;
+    text-decoration: none;
+}
+
+.property-address {
+    color: #6f6f6f;
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+
+.property-gender img {
+    width: 40px;
+}
+
+/* Rent on the left, Remove button on the right. */
+.rent-container {
+    display: flex;
+    align-items: center;
+}
+
+.rent {
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.rent-unit {
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+.button-container .btn {
+    font-size: 14px;
+    border-radius: 0px;
+    width: 140px;
+    float: right;
+}
+
+@media (max-width: 575px) {
+    .button-container .btn {
+        width: 100%;
+        float: none;
+    }
+}
