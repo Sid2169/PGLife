@@ -91,13 +91,15 @@ function rating_to_stars($rating) {
         </ol>
     </nav>
 
-    <div id="property-images" class="carousel slide" data-ride="carousel">
+    <main id="main-content" tabindex="-1">
+    <div class="property-gallery">
+    <div id="property-images" class="carousel slide" data-ride="carousel" role="region" aria-roledescription="carousel" aria-label="Property photos">
         <ol class="carousel-indicators">
             <?php
             $property_images = glob(__DIR__ . "/img/properties/" . $property_id . "/*");
             foreach ($property_images as $index => $property_image) {
             ?>
-                <li data-target="#property-images" data-slide-to="<?= $index ?>" class="<?= $index == 0 ? "active" : ""; ?>"></li>
+                <li class="<?= $index == 0 ? "active" : ""; ?>"><button type="button" data-target="#property-images" data-slide-to="<?= $index ?>" aria-label="Show photo <?= $index + 1 ?>"></button></li>
             <?php } ?>
         </ol>
         <div class="carousel-inner">
@@ -105,7 +107,7 @@ function rating_to_stars($rating) {
                 $image_url = "img/properties/" . $property_id . "/" . basename($property_image);
             ?>
                 <div class="carousel-item <?= $index == 0 ? "active" : ""; ?>">
-                    <img class="d-block w-100" src="<?= e($image_url) ?>" alt="slide">
+                    <img class="d-block w-100" src="<?= e($image_url) ?>" alt="<?= e($property['property_name']) ?> — photo <?= $index + 1 ?>">
                 </div>
             <?php } ?>
         </div>
@@ -118,11 +120,13 @@ function rating_to_stars($rating) {
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <button type="button" class="carousel-pause" data-carousel="#property-images" aria-controls="property-images" aria-pressed="false">Pause photos</button>
+    </div>
 
     <div class="property-summary page-container">
         <div class="row no-gutters justify-content-between">
             <?php $total_rating = round(($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3, 1); ?>
-            <div class="star-container" title="<?= e($total_rating) ?>">
+            <div class="star-container" title="<?= e($total_rating) ?>" role="img" aria-label="Rating: <?= e($total_rating) ?> out of 5">
                 <?= rating_to_stars($total_rating) ?>
             </div>
             <div class="interested-container">
@@ -133,9 +137,9 @@ function rating_to_stars($rating) {
                 }
                 ?>
                 <?php if ($is_interested): ?>
-                    <i class="is-interested-image interested-btn fas fa-heart" property_id="<?= $property_id ?>"></i>
+                    <button type="button" class="is-interested-image interested-btn fas fa-heart" property_id="<?= $property_id ?>" aria-label="Shortlist <?= e($property['property_name']) ?>" aria-pressed="true"></button>
                 <?php else: ?>
-                    <i class="is-interested-image interested-btn far fa-heart" property_id="<?= $property_id ?>"></i>
+                    <button type="button" class="is-interested-image interested-btn far fa-heart" property_id="<?= $property_id ?>" aria-label="Shortlist <?= e($property['property_name']) ?>" aria-pressed="false"></button>
                 <?php endif; ?>
                 <div class="interested-text">
                     <span class="interested-user-count"><?= $interested_users_count ?></span> interested
@@ -143,13 +147,13 @@ function rating_to_stars($rating) {
             </div>
         </div>
         <div class="detail-container">
-            <div class="property-name"><?= e($property['property_name']) ?></div>
+            <h1 class="property-name"><?= e($property['property_name']) ?></h1>
             <div class="property-address"><?= e($property['address']) ?></div>
             <div class="property-gender">
                 <?php
-                if ($property['gender'] == "male") echo '<img src="img/male.png">';
-                elseif ($property['gender'] == "female") echo '<img src="img/female.png">';
-                else echo '<img src="img/unisex.png">';
+                if ($property['gender'] == "male") echo '<img src="img/male.png" alt=""><span>Male</span>';
+                elseif ($property['gender'] == "female") echo '<img src="img/female.png" alt=""><span>Female</span>';
+                else echo '<img src="img/unisex.png" alt=""><span>Unisex</span>';
                 ?>
             </div>
         </div>
@@ -166,7 +170,7 @@ function rating_to_stars($rating) {
 
     <div class="property-amenities">
         <div class="page-container">
-            <h1>Amenities</h1>
+            <h2>Amenities</h2>
             <div class="row justify-content-between">
                 <?php
                 $sections = ["Building", "Common Area", "Bedroom", "Washroom"];
@@ -175,10 +179,10 @@ function rating_to_stars($rating) {
                     if (count($section_amenities) == 0) continue;
                 ?>
                     <div class="col-md-auto">
-                        <h5><?= e($section) ?></h5>
+                        <h3><?= e($section) ?></h3>
                         <?php foreach ($section_amenities as $amenity) { ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= e($amenity['icon']) ?>.svg" alt="<?= e($amenity['name']) ?>">
+                                <img src="img/amenities/<?= e($amenity['icon']) ?>.svg" alt="">
                                 <span><?= e($amenity['name']) ?></span>
                             </div>
                         <?php } ?>
@@ -189,13 +193,13 @@ function rating_to_stars($rating) {
     </div>
 
     <div class="property-about page-container">
-        <h1>About the Property</h1>
+        <h2>About the Property</h2>
         <p><?= nl2br(e($property['description'])) ?></p>
     </div>
 
     <div class="property-rating">
         <div class="page-container">
-            <h1>Property Rating</h1>
+            <h2>Property Rating</h2>
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6">
                     <?php
@@ -208,10 +212,10 @@ function rating_to_stars($rating) {
                     ?>
                         <div class="rating-criteria row">
                             <div class="col-6">
-                                <i class="rating-criteria-icon <?= e($r['icon']) ?>"></i>
+                                <i class="rating-criteria-icon <?= e($r['icon']) ?>" aria-hidden="true"></i>
                                 <span class="rating-criteria-text"><?= e($r['text']) ?></span>
                             </div>
-                            <div class="rating-criteria-star-container col-6" title="<?= e($r['val']) ?>">
+                            <div class="rating-criteria-star-container col-6" title="<?= e($r['val']) ?>" role="img" aria-label="<?= e($r['val']) ?> out of 5">
                                 <?= rating_to_stars($r['val']) ?>
                             </div>
                         </div>
@@ -219,7 +223,7 @@ function rating_to_stars($rating) {
                 </div>
 
                 <div class="col-md-4">
-                    <div class="rating-circle">
+                    <div class="rating-circle" role="img" aria-label="Overall rating: <?= e($total_rating) ?> out of 5">
                         <div class="total-rating"><?= e($total_rating) ?></div>
                         <div class="rating-circle-star-container">
                             <?= rating_to_stars($total_rating) ?>
@@ -231,11 +235,11 @@ function rating_to_stars($rating) {
     </div>
 
     <div class="property-testimonials page-container">
-        <h1>What people say</h1>
+        <h2>What people say</h2>
         <?php foreach ($testimonials as $testimonial) { ?>
             <div class="testimonial-block">
                 <div class="testimonial-image-container">
-                    <img class="testimonial-img" src="img/man.png" alt="User">
+                    <img class="testimonial-img" src="img/man.png" alt="">
                 </div>
                 <div class="testimonial-text">
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
@@ -245,6 +249,7 @@ function rating_to_stars($rating) {
             </div>
         <?php } ?>
     </div>
+    </main>
 
     <?php
     include "includes/signup_modal.php";

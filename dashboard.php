@@ -67,11 +67,13 @@ function rating_to_stars($rating) {
         </ol>
     </nav>
 
-    <div class="my-profile page-container">
-        <h1>My Profile</h1>
-        <div class="row">
+    <main id="main-content" tabindex="-1">
+    <section class="my-profile page-container" aria-labelledby="profile-heading">
+        <span class="eyebrow">Your space</span>
+        <h1 id="profile-heading">My Profile</h1>
+        <div class="row profile-card">
             <div class="col-md-3 profile-img-container">
-                <i class="fas fa-user profile-img"></i>
+                <i class="fas fa-user profile-img" aria-hidden="true"></i>
             </div>
             <div class="col-md-9">
                 <div class="row no-gutters justify-content-between align-items-end">
@@ -87,12 +89,12 @@ function rating_to_stars($rating) {
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <?php if (count($interested_properties) > 0) { ?>
         <div class="my-interested-properties" id="interested-list">
             <div class="page-container">
-                <h1>My Interested Properties</h1>
+                <h2>My Interested Properties</h2>
 
                 <?php foreach ($interested_properties as $property) {
                     $property_id = (int) $property['id'];
@@ -111,21 +113,21 @@ function rating_to_stars($rating) {
                         </div>
                         <div class="content-container col-md-8">
                             <div class="row no-gutters justify-content-between">
-                                <div class="star-container" title="<?= e($total_rating) ?>">
+                                <div class="star-container" title="<?= e($total_rating) ?>" role="img" aria-label="Rating: <?= e($total_rating) ?> out of 5">
                                     <?= $stars ?>
                                 </div>
                                 <div class="interested-container">
-                                    <i class="is-interested-image interested-btn fas fa-heart" property_id="<?= $property_id ?>"></i>
+                                    <button type="button" class="is-interested-image interested-btn fas fa-heart" property_id="<?= $property_id ?>" aria-label="Shortlist <?= e($property['name']) ?>" aria-pressed="true"></button>
                                 </div>
                             </div>
                             <div class="detail-container">
-                                <div class="property-name"><?= e($property['name']) ?></div>
+                                <h3 class="property-name"><?= e($property['name']) ?></h3>
                                 <div class="property-address"><?= e($property['address']) ?></div>
                                 <div class="property-gender">
                                     <?php
-                                    if ($property['gender'] == "male") echo '<img src="img/male.png">';
-                                    elseif ($property['gender'] == "female") echo '<img src="img/female.png">';
-                                    else echo '<img src="img/unisex.png">';
+                                    if ($property['gender'] == "male") echo '<img src="img/male.png" alt=""><span>Male</span>';
+                                    elseif ($property['gender'] == "female") echo '<img src="img/female.png" alt=""><span>Female</span>';
+                                    else echo '<img src="img/unisex.png" alt=""><span>Unisex</span>';
                                     ?>
                                 </div>
                             </div>
@@ -135,7 +137,7 @@ function rating_to_stars($rating) {
                                     <div class="rent-unit">per month</div>
                                 </div>
                                 <div class="button-container col-6">
-                                    <a href="property_detail.php?property_id=<?= $property_id ?>" class="btn btn-primary">View</a>
+                                    <a href="property_detail.php?property_id=<?= $property_id ?>" class="btn btn-primary" aria-label="View <?= e($property['name']) ?>">View</a>
                                 </div>
                             </div>
                         </div>
@@ -144,6 +146,7 @@ function rating_to_stars($rating) {
             </div>
         </div>
     <?php } ?>
+    </main>
 
     <?php include "includes/footer.php"; ?>
 </body>
