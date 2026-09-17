@@ -1,0 +1,272 @@
+/* ============================================================
+   PG Life theme system + UI modernization
+   - CSS custom properties ("design tokens") for light & dark
+   - The <html data-theme> attribute is set by an inline script in
+     head_links.php BEFORE styles load (no flash): "light" or "dark".
+     On first visit it follows the OS setting (prefers-color-scheme);
+     after that the user's choice is stored in localStorage
+     ("pglife-theme") and wins.
+   - Loaded right after bootstrap.min.css so component overrides win.
+   ============================================================ */
+
+:root {
+    color-scheme: light;
+
+    /* Typography */
+    --font: 'Inter', 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+    /* Light palette */
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-2: #f3f5f8;
+    --surface-3: #eceff3;
+    --text: #202a37;
+    --text-muted: #64707f;
+    --border: #e2e6ec;
+
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-contrast: #ffffff;
+    --link: #2f6fed;
+
+    --heart: #ef4444;
+    --rating: #0ea5a4;
+
+    --footer-bg: #1f2630;
+    --footer-text: #eef2f6;
+    --footer-muted: #97a3b1;
+
+    --overlay: rgba(23, 32, 46, 0.45);
+    --image-bg: #ffffff;
+
+    /* Elevation */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+    --shadow-md: 0 4px 10px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.05);
+    --shadow-lg: 0 12px 24px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.07);
+
+    /* Shape */
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0e141b;
+    --surface: #151d27;
+    --surface-2: #111924;
+    --surface-3: #1c2632;
+    --text: #e8edf3;
+    --text-muted: #9aa7b6;
+    --border: #273340;
+
+    --primary: #6a64f1;
+    --primary-hover: #837df5;
+    --primary-contrast: #ffffff;
+    --link: #9db9ff;
+
+    --heart: #f87171;
+    --rating: #2dd4bf;
+
+    --footer-bg: #0a0f15;
+    --footer-text: #eef2f6;
+    --footer-muted: #7f8b99;
+
+    --overlay: rgba(0, 0, 0, 0.5);
+    --image-bg: #ffffff;
+}
+
+/* Fallback for non-JS browsers: mirror dark tokens from the OS setting. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+        --bg: #0e141b;
+        --surface: #151d27;
+        --surface-2: #111924;
+        --surface-3: #1c2632;
+        --text: #e8edf3;
+        --text-muted: #9aa7b6;
+        --border: #273340;
+        --primary: #6a64f1;
+        --primary-hover: #837df5;
+        --primary-contrast: #ffffff;
+        --link: #9db9ff;
+        --heart: #f87171;
+        --rating: #2dd4bf;
+        --footer-bg: #0a0f15;
+        --footer-text: #eef2f6;
+        --footer-muted: #7f8b99;
+        --overlay: rgba(0, 0, 0, 0.5);
+        --image-bg: #ffffff;
+    }
+}
+
+/* ---------- Base ---------- */
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+a {
+    color: var(--link);
+}
+
+a:hover {
+    color: var(--link);
+    opacity: 0.92;
+}
+
+hr {
+    border-color: var(--border);
+}
+
+/* ---------- Bootstrap component overrides ---------- */
+
+.btn {
+    border-radius: var(--radius-sm);
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary,
+.btn-primary:hover:not(:disabled):not(.disabled),
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary.show,
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-contrast);
+    box-shadow: none;
+}
+
+.btn-primary:hover:not(:disabled):not(.disabled),
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.breadcrumb {
+    background-color: var(--surface-3);
+    color: var(--text-muted);
+    border-radius: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--text-muted);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-muted);
+}
+
+.form-control {
+    background-color: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-control:focus {
+    background-color: var(--surface);
+    border-color: var(--primary);
+    color: var(--text);
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.input-group-text {
+    background-color: var(--surface-3);
+    border-color: var(--border);
+    color: var(--text-muted);
+}
+
+.modal-content {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text);
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--border);
+}
+
+.modal-header .close {
+    color: var(--text);
+    text-shadow: none;
+    opacity: 0.75;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-muted);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: var(--text);
+}
+
+.navbar-light .navbar-nav .btn-link {
+    color: var(--text-muted);
+}
+
+.navbar-light .navbar-nav .btn-link:hover {
+    color: var(--text);
+}
+
+.navbar-toggler {
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ---------- Screen-level transitions (applied to page CSS classes too) ---------- */
+
+.property-card,
+.filter-option,
+.budget-input,
+.city-tile-image,
+.header,
+.breadcrumb,
+.modal-content,
+.form-control,
+.input-group-text,
+.btn {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ---------- Theme toggle button ---------- */
+
+.theme-toggle {
+    background: none;
+    border: 0;
+    padding: 0.5rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: left;
+}
+
+.theme-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
+    border-radius: var(--radius-sm);
+}

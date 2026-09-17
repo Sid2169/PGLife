@@ -40,7 +40,65 @@ function formatRent(rent) {
     return Number(rent).toLocaleString("en-IN");
 }
 
+/* ---------- Theme toggle ---------- */
+
+/* Reflect the active theme on the navbar toggle (moon = switch to dark). */
+function updateThemeToggle() {
+    var btn = document.getElementById("theme-toggle");
+    if (!btn) {
+        return;
+    }
+    var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    var icon = btn.querySelector("i");
+    if (icon) {
+        icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
+    }
+    btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+}
+
+function applyTheme(theme, persist) {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (persist) {
+        try {
+            localStorage.setItem("pglife-theme", theme);
+        } catch (e) {}
+    }
+    updateThemeToggle();
+}
+
+function initThemeToggle() {
+    var btn = document.getElementById("theme-toggle");
+    if (!btn) {
+        return;
+    }
+
+    btn.addEventListener("click", function () {
+        var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        applyTheme(isDark ? "light" : "dark", true);
+    });
+
+    /* Until the user chooses explicitly, keep following the OS setting live. */
+    var stored = null;
+    try {
+        stored = localStorage.getItem("pglife-theme");
+    } catch (e) {}
+    if (!stored && window.matchMedia) {
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        var onSystemChange = function (e) {
+            applyTheme(e.matches ? "dark" : "light", false);
+        };
+        if (mq.addEventListener) {
+            mq.addEventListener("change", onSystemChange);
+        } else if (mq.addListener) {
+            mq.addListener(onSystemChange);
+        }
+    }
+
+    updateThemeToggle();
+}
+
 $(document).ready(function () {
+    initThemeToggle();
     /* Toggle interest on any interested button (delegated, so it also
        works for cards rendered by the React property list). */
     $(document).on("click", ".interested-btn", function (e) {

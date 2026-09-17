@@ -43,6 +43,14 @@
                 <?php
                 }
                 ?>
+                <div class="nav-vl"></div>
+                <li class="nav-item">
+                    <button type="button" class="nav-link theme-toggle" id="theme-toggle"
+                        aria-pressed="false" aria-label="Toggle light or dark theme"
+                        title="Toggle light or dark theme">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>

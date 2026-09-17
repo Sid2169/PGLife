@@ -6,7 +6,7 @@
    ============================================ */
 
 .hero-image {
-    background-color: #e5e3e8;
+    background-color: var(--surface-3);
     height: 70vh;
     position: relative;
     display: flex;
@@ -113,7 +113,7 @@
 .search-bar .input-group {
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-sm);
 }
 
 .search-bar .form-control {
@@ -124,8 +124,8 @@
 
 /* Magnifying-glass button embedded in the right edge of the pill. */
 .search-bar .btn-search {
-    background-color: #777777;
-    color: #ffffff;
+    background-color: var(--primary);
+    color: var(--primary-contrast);
     border: none;
     border-radius: 0px;
     padding: 13px 20px;
@@ -133,6 +133,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.search-bar .btn-search:hover {
+    background-color: var(--primary-hover);
+    color: var(--primary-contrast);
 }
 
 /* ============================================
@@ -157,7 +162,7 @@
 }
 
 .city-tile a {
-    color: #373737;
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -168,10 +173,10 @@
     height: 190px;
     margin: 0px auto;
     border-radius: 50%;
-    border: 3px solid #e5e3e8;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: var(--image-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,7 +184,7 @@
 
 .city-tile:hover .city-tile-image,
 .city-tile:focus .city-tile-image {
-    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 .city-tile-image img {
