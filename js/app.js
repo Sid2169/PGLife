@@ -97,6 +97,49 @@ function initThemeToggle() {
     updateThemeToggle();
 }
 
+/* Keep automatic photos optional for keyboard users and reduced-motion users. */
+function initCarouselAccessibility() {
+    var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    $(".carousel-pause").each(function () {
+        var button = this;
+        var $carousel = $(button.getAttribute("data-carousel"));
+        var paused = false;
+
+        function setPaused(value) {
+            paused = value;
+            $carousel.carousel(paused ? "pause" : "cycle");
+            if (paused) {
+                /* Bootstrap 4 schedules a restart after touch gestures. */
+                clearTimeout($carousel.data("bs.carousel").touchTimeout);
+            }
+            button.setAttribute("aria-pressed", paused ? "true" : "false");
+        }
+
+        button.addEventListener("click", function () { setPaused(!paused); });
+        /* WAI-ARIA's carousel pattern requires explicit resume after focus. */
+        $carousel.on("focusin", function () { setPaused(true); });
+        $carousel.on("touchend pointerup", function () {
+            if (paused) { setPaused(true); }
+        });
+        $carousel.on("click", "[data-slide], [data-slide-to]", function () {
+            /* Bootstrap may restart cycling when selecting the active photo. */
+            if (paused) { setTimeout(function () { setPaused(true); }, 0); }
+        });
+        if (motion.matches) { setPaused(true); }
+        var onMotionChange = function (event) {
+            if (event.matches) { setPaused(true); }
+        };
+        if (motion.addEventListener) {
+            motion.addEventListener("change", onMotionChange);
+        } else if (motion.addListener) {
+            motion.addListener(onMotionChange);
+        }
+    });
+}
+
+/* Bootstrap starts carousels on load; apply motion preferences afterwards. */
+$(window).on("load", initCarouselAccessibility);
+
 $(document).ready(function () {
     initThemeToggle();
     /* Toggle interest on any interested button (delegated, so it also
@@ -120,6 +163,7 @@ $(document).ready(function () {
             function (data) {
                 hideLoading();
                 if (data.success) {
+                    $icon.attr("aria-pressed", data.interested ? "true" : "false");
                     /* On the dashboard, remove the card when un-interested. */
                     if ($icon.closest("#interested-list").length > 0 && !data.interested) {
                         $icon.closest(".property-card").fadeOut(function () {

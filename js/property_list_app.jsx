@@ -33,7 +33,7 @@ function Rating({ value }) {
             stars.push(<i key={"s" + i} className="far fa-star"></i>);
         }
     }
-    return <div className="star-container" title={"Rating: " + value}>{stars}</div>;
+    return <div className="star-container" title={"Rating: " + value} role="img" aria-label={"Rating: " + value + " out of 5"}>{stars}</div>;
 }
 
 function PropertyCard({ property, onToggleInterested }) {
@@ -50,12 +50,12 @@ function PropertyCard({ property, onToggleInterested }) {
     return (
         <div className="property-card row">
             <div className="image-container col-md-4">
-                <a href={detailUrl}>
+                <a href={detailUrl} aria-label={"View " + property.name}>
                     {property.image ? (
                         <img src={property.image} alt={property.name} className="d-block m-auto" />
                     ) : (
-                        <div style={{ padding: "40px" }}>
-                            <i className="fas fa-image" style={{ color: "var(--text-muted)", fontSize: "48px" }}></i>
+                        <div className="property-image-placeholder">
+                            <i className="fas fa-image" aria-hidden="true"></i>
                         </div>
                     )}
                 </a>
@@ -64,21 +64,25 @@ function PropertyCard({ property, onToggleInterested }) {
                 <div className="row no-gutters justify-content-between">
                     <Rating value={property.rating || 0} />
                     <div className="interested-container">
-                        <i
+                        <button
+                            type="button"
                             className={heartClass}
                             property_id={property.id}
+                            aria-label={"Shortlist " + property.name}
+                            aria-pressed={!!property.is_interested}
                             onClick={(e) => onToggleInterested(property, e)}
-                        ></i>
+                        ></button>
                         <div className="interested-text">
                             <span className="interested-user-count">{property.interested_count}</span> interested
                         </div>
                     </div>
                 </div>
                 <div className="detail-container">
-                    <div className="property-name">{property.name}</div>
+                    <h2 className="property-name">{property.name}</h2>
                     <div className="property-address">{property.address}</div>
                     <div className="property-gender">
-                        <img src={genderImage} alt={property.gender} />
+                        <img src={genderImage} alt="" />
+                        <span>{property.gender === "male" ? "Male" : property.gender === "female" ? "Female" : "Unisex"}</span>
                     </div>
                 </div>
                 <div className="row no-gutters">
@@ -87,7 +91,7 @@ function PropertyCard({ property, onToggleInterested }) {
                         <div className="rent-unit">per month</div>
                     </div>
                     <div className="button-container col-6">
-                        <a href={detailUrl} className="btn btn-primary">
+                        <a href={detailUrl} className="btn btn-primary" aria-label={"View " + property.name}>
                             View
                         </a>
                     </div>
@@ -102,6 +106,7 @@ function FilterOption({ active, onClick, children }) {
         <button
             type="button"
             className={"filter-option" + (active ? " active" : "")}
+            aria-pressed={active}
             onClick={onClick}
         >
             {children}
@@ -217,83 +222,86 @@ function PropertyListApp() {
 
     return (
         <div>
-            <div className="filter-bar row justify-content-around align-items-center">
-                <div className="col-auto">
-                    <b>Gender:</b>
-                    <br />
-                    {genderButtons.map((g) => (
-                        <FilterOption
-                            key={g.key}
-                            active={gender === g.key}
-                            onClick={() => setGender(g.key)}
-                        >
-                            {g.key ? (
-                                <img
-                                    src={"img/" + g.key + ".png"}
-                                    alt={g.label}
-                                    style={{ width: "22px", marginRight: "4px" }}
-                                />
-                            ) : null}
-                            {g.label}
-                        </FilterOption>
-                    ))}
-                </div>
-                <div className="col-auto">
-                    <b>Budget:</b>
-                    <br />
-                    <span>
-                        ₹
-                        <input
-                            type="number"
-                            min="0"
-                            className="budget-input"
-                            placeholder="Min"
-                            value={minRent}
-                            onChange={(e) => setMinRent(e.target.value)}
-                        />
-                        – ₹
-                        <input
-                            type="number"
-                            min="0"
-                            className="budget-input"
-                            placeholder="Max"
-                            value={maxRent}
-                            onChange={(e) => setMaxRent(e.target.value)}
-                        />
-                    </span>
-                </div>
-                <div className="col-auto">
-                    <b>Sort:</b>
-                    <br />
-                    {sortButtons.map((s) => (
-                        <FilterOption
-                            key={s.key}
-                            active={sort === s.key}
-                            onClick={() => setSort(s.key)}
-                        >
-                            {s.label}
-                        </FilterOption>
-                    ))}
-                </div>
+            <div className="filter-bar">
+                <fieldset className="filter-group">
+                    <legend>Gender</legend>
+                    <div className="filter-options">
+                        {genderButtons.map((g) => (
+                            <FilterOption
+                                key={g.key}
+                                active={gender === g.key}
+                                onClick={() => setGender(g.key)}
+                            >
+                                {g.key ? <img src={"img/" + g.key + ".png"} alt="" /> : null}
+                                {g.label}
+                            </FilterOption>
+                        ))}
+                    </div>
+                </fieldset>
+                <fieldset className="filter-group">
+                    <legend>Monthly budget</legend>
+                    <div className="budget-fields">
+                        <div className="budget-field">
+                            <label htmlFor="min-rent">Minimum (₹)</label>
+                            <input
+                                id="min-rent"
+                                type="number"
+                                min="0"
+                                className="budget-input"
+                                placeholder="Min"
+                                value={minRent}
+                                onChange={(e) => setMinRent(e.target.value)}
+                            />
+                        </div>
+                        <div className="budget-field">
+                            <label htmlFor="max-rent">Maximum (₹)</label>
+                            <input
+                                id="max-rent"
+                                type="number"
+                                min="0"
+                                className="budget-input"
+                                placeholder="Max"
+                                value={maxRent}
+                                onChange={(e) => setMaxRent(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset className="filter-group sort-group">
+                    <legend>Sort by</legend>
+                    <div className="filter-options">
+                        {sortButtons.map((s) => (
+                            <FilterOption
+                                key={s.key}
+                                active={sort === s.key}
+                                onClick={() => setSort(s.key)}
+                            >
+                                {s.label}
+                            </FilterOption>
+                        ))}
+                    </div>
+                </fieldset>
             </div>
 
+            <div role="status" aria-live="polite" aria-atomic="true" className={"listing-count" + (!loading && (error || count === 0) ? " sr-only" : "")}>
+                {loading ? "Loading properties…" : error ? error : count === 0
+                    ? "OOPS! No matching PG found in " + INIT_CITY + "."
+                    : "Showing " + count + " PG's in " + INIT_CITY}
+            </div>
             {loading ? (
-                <div className="ajax-spinner">
-                    <img src="img/progress_spinner.gif" alt="Loading" />
+                <div className="ajax-spinner" aria-hidden="true">
+                    <img src="img/progress_spinner.gif" alt="" />
                 </div>
             ) : error ? (
-                <div className="no-property-container">
+                <div className="no-property-container" aria-hidden="true">
                     <p>{error}</p>
                 </div>
             ) : count === 0 ? (
-                <div className="no-property-container">
+                <div className="no-property-container" aria-hidden="true">
                     <p>OOPS! No matching PG found in {INIT_CITY}.</p>
                 </div>
             ) : (
                 <div>
-                    <div className="listing-count">
-                        Showing {count} PG&apos;s in {INIT_CITY}
-                    </div>
                     {properties.map((p) => (
                         <PropertyCard
                             key={p.id}

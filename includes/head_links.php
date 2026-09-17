@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <script>
     (function () {
         /* Apply the theme before CSS paints to avoid a flash: use the stored
