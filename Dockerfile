@@ -4,6 +4,10 @@ FROM php:8.2-apache
 RUN docker-php-ext-install mysqli \
     && a2enmod rewrite headers
 
+# The stock image sets "AllowOverride None" for /var/www, which would ignore our
+# .htaccess hardening (and expose pglife.sql). Enable it for the web root.
+RUN sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
 # Sensible production PHP settings (can be overridden by env/config).
 RUN { \
         echo 'display_errors = Off'; \
