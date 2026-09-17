@@ -10,6 +10,7 @@
 
             <div class="modal-body">
                 <form id="signup-form" class="form" role="form" method="post" action="api/signup_submit.php">
+                    <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
