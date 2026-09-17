@@ -47,6 +47,11 @@ if ($initial_city == "") {
         </ol>
     </nav>
 
+    <div class="list-head">
+        <h4>Best PGs in <span id="city-breadcrumb-2"><?php echo e($initial_city); ?></span></h4>
+        <p>Verified stays, honest pricing — pick your perfect room.</p>
+    </div>
+
     <div id="property-list-app" class="page-container"></div>
 
     <?php
