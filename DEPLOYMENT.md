@@ -154,13 +154,15 @@ Platforms that *do* fit, easiest first:
    ```
    DB_HOST = ${{MySQL.MYSQLHOST}}
    DB_PORT = ${{MySQL.MYSQLPORT}}
-   DB_NAME = ${{MySQL.MYSQLDATABASE}}
+   DB_NAME = pglife
    DB_USER = ${{MySQL.MYSQLUSER}}
    DB_PASS = ${{MySQL.MYSQLPASSWORD}}
    APP_ENV = production
    ```
-   (`includes/config.php` also auto-detects the raw `MYSQLHOST`/`MYSQLUSER`/…
-   names, so referencing those directly works too.)
+   **Important:** keep `DB_NAME = pglife` exactly. Railway's managed MySQL
+   creates a database literally named `railway`, but `pglife.sql` installs the
+   schema into `pglife` (`CREATE DATABASE pglife; USE pglife;`), so point the app
+   at the database the dump creates.
 5. **Import the schema once.** The web service starts fine without it (the
    health check is the DB-free home page). Import via the Railway CLI:
    ```bash
@@ -172,6 +174,8 @@ Platforms that *do* fit, easiest first:
    ```
    Or copy the public connection URL from the MySQL service's **Connect** tab
    and run `mysql -h HOST -P PORT -u USER -p DB < pglife.sql` locally.
+   (No local MySQL client? Import from the web container instead with an SSH
+   key registered: `railway ssh --service PGLife -- php -r 'eval(base64_decode("<pglife.sql runner script>"))'`.)
 6. Generate a public domain for the web service (**Settings → Networking →
    Generate Domain**) and open it. Run the smoke test in section 7.
 
