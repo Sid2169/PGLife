@@ -1,0 +1,19 @@
+# PG Life - Apache hardening
+# Applies when the site is served by Apache (XAMPP, cPanel, most shared hosts).
+# nginx users should mirror these rules in their server block.
+
+# Disable directory listing.
+Options -Indexes
+
+# Never serve the database dump, docs, env files or deploy configs over HTTP.
+<FilesMatch "(^\.|\.(sql|md|log|sh|conf|example|yml|yaml)$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+DirectoryIndex index.php index.html

@@ -1,1 +1,17 @@
 solutions/
+
+# Local environment / secrets
+.env
+
+# Logs
+*.log
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Deployment bundles
+*.zip
