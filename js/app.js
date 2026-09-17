@@ -5,6 +5,14 @@
  * - Opens the login modal when a guest tries an action that needs login.
  */
 
+/* Footer: keep the copyright year current. */
+$(function () {
+    var $year = $("#copyright-year");
+    if ($year.length) {
+        $year.text(new Date().getFullYear());
+    }
+});
+
 /* Loading overlay helpers */
 function showLoading() {
     $("#loading").addClass("loading");

@@ -18,7 +18,7 @@
                 <a href="property_list.php?city=Hyderabad">PG in Hyderabad</a>
             </div>
         </nav>
-        <div class="footer-copyright">&copy; 2020 Copyright PG Life </div>
+        <div class="footer-copyright">&copy; <span id="copyright-year">2020</span> Copyright PG Life </div>
     </div>
 </footer>
 
