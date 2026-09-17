@@ -1,58 +1,8 @@
-/* ============================================================
-   Property list — glass filter bar + modern property cards
-   (class names match js/property_list_app.jsx exactly)
-   ============================================================ */
-
-/* ---------- Page intro ---------- */
-
-.list-head {
-    padding: 40px 24px 12px;
-    text-align: center;
-}
-
-.list-head h4 {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
-}
-
-.list-head p {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin: 0;
-}
-
-/* ---------- Filter bar (glass panel) ---------- */
-
-.filter-bar {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 18px 24px;
-    margin-bottom: 32px;
-}
-
 .filter-bar > div {
     cursor: pointer;
-    font-size: 14px;
-}
-
-.filter-bar .filter-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 6px;
-}
-
-.filter-bar .btn-light {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 16px;
 }
 
 .filter-bar img {
@@ -63,42 +13,35 @@
     padding: 6px;
     margin-right: 8px;
     background-color: var(--image-bg);
-    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .filter-bar img {
+        display: block;
+        margin: 0px auto 4px;
+    }
 }
 
 .filter-bar .filter-option {
     font-size: 13px;
-    padding: 6px 16px;
-    margin: 3px 4px;
+    padding: 4px 10px;
+    margin: 2px 4px;
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     background: var(--surface);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
-                color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-}
-
-.filter-bar .filter-option i {
-    margin-right: 6px;
-    font-size: 12px;
-}
-
-.filter-bar .filter-option:hover {
-    border-color: var(--primary);
     color: var(--text);
+    cursor: pointer;
 }
 
 .filter-bar .filter-option.active {
     background-color: var(--primary);
     border-color: var(--primary);
     color: var(--primary-contrast);
-    box-shadow: 0 4px 14px rgba(91, 91, 240, 0.3);
 }
 
 .budget-input {
     width: 80px;
-    padding: 6px 10px;
+    padding: 4px 6px;
     font-size: 13px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
@@ -106,277 +49,146 @@
     color: var(--text);
 }
 
-/* Sort buttons */
-.filter-bar .sort-group .btn {
-    border-radius: var(--radius-pill);
-    font-size: 13px;
-    padding: 6px 16px;
-    margin: 3px 4px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text-muted);
-}
-
-.filter-bar .sort-group .btn-active {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--primary-contrast);
-}
-
-/* ---------- Listing ---------- */
-
 .ajax-spinner {
     text-align: center;
-    padding: 64px 0;
-}
-
-.ajax-spinner .spinner-ring {
-    width: 44px;
-    height: 44px;
-    border: 4px solid var(--border);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    margin: 0 auto 16px;
-    animation: spin 0.8s linear infinite;
+    padding: 48px 0;
 }
 
 .listing-count {
     font-size: 14px;
     color: var(--text-muted);
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
-
-/* ---------- Property card (matches JSX structure) ---------- */
 
 .property-card {
     background-color: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 18px 20px;
-    margin: 0px auto 24px;
+    border-radius: var(--radius);
+    padding: 15px 0px;
+    margin: 0px auto 20px;
     box-shadow: var(--shadow-md);
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
-                border-color var(--dur) var(--ease);
 }
 
 .property-card:focus,
 .property-card:hover {
-    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
-    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
 }
 
 .image-container {
     text-align: center;
-    align-self: center;
-    min-height: 180px;
-}
-
-.image-container img {
-    width: 100%;
-    max-width: 320px;
-    border-radius: var(--radius-md);
-    object-fit: cover;
-    box-shadow: var(--shadow-sm);
-}
-
-.image-container .img-placeholder {
-    width: 100%;
-    max-width: 320px;
-    height: 170px;
-    border-radius: var(--radius-md);
-    background-color: var(--surface-2);
-    border: 1px dashed var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 @media (max-width: 768px) {
     .image-container {
-        padding-bottom: 16px;
-        min-height: 0;
+        padding-bottom: 12px;
     }
 }
 
-/* Rating + interested row */
-.property-card .card-top-row {
-    align-items: center;
-}
-
-.star-container {
-    display: flex;
-    align-items: center;
-    gap: 2px;
+.image-container img {
+    width: 100%;
+    max-width: 300px;
 }
 
 .star-container i {
-    color: var(--rating);
-    font-size: 12px;
-}
-
-.star-container i.far {
-    color: var(--border);
+    color: var(--heart);
+    font-size: 10px;
+    margin-right: 6px;
 }
 
 .interested-container {
-    text-align: right;
+    text-align: center;
 }
 
 .interested-container i {
     color: var(--heart);
     font-size: 20px;
     cursor: pointer;
-    transition: transform var(--dur) var(--ease);
-}
-
-.interested-container i:hover {
-    transform: scale(1.15);
 }
 
 .interested-text {
-    font-size: 11px;
-    color: var(--text-muted);
+    font-size: 10px;
 }
 
-/* Name / address block */
 .detail-container {
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .property-name {
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .property-address {
     color: var(--text-muted);
     font-size: 13px;
-    padding: 3px 0 4px;
-}
-
-.property-gender {
-    text-align: center;
-    background-color: var(--surface-2);
-    border-radius: var(--radius-pill);
-    width: 84px;
-    padding: 6px 8px;
-    margin: 6px 0 12px;
+    padding-bottom: 5px;
 }
 
 .property-gender img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
+    width: 40px;
 }
 
-/* Rent + CTA */
 .rent-container {
     display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .rent {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.01em;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 10px;
 }
 
 .rent-unit {
     color: var(--text-muted);
     font-size: 12px;
-    margin-left: 2px;
-}
-
-.button-container {
-    text-align: right;
 }
 
 .button-container .btn {
     font-size: 14px;
-    border-radius: var(--radius-pill);
-    padding: 8px 22px;
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--primary-contrast);
-    font-weight: 600;
-    box-shadow: 0 4px 14px rgba(91, 91, 240, 0.3);
+    border-radius: var(--radius-sm);
+    width: 140px;
+    float: right;
 }
 
-.button-container .btn:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-/* ---------- Empty / error states ---------- */
-
+/* No Property */
 .no-property-container {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.no-property-container .empty-icon {
-    font-size: 44px;
-    color: var(--border);
-    margin-bottom: 16px;
+    margin: 96px auto 144px;
 }
 
 .no-property-container p {
-    font-size: 18px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
+    font-size: 24px;
+    text-align: center;
 }
 
-.no-property-container small {
-    color: var(--text-muted);
+/* Filter Modal */
+#filter-modal .modal-dialog {
+    max-width: 600px;
 }
-
-/* ---------- Filter modal ---------- */
 
 #filter-modal .modal-body h5 {
     color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
-#filter-modal .modal-body .btn {
-    font-size: 13px;
-    border-radius: var(--radius-pill);
-    padding: 7px 22px;
-    margin: 6px 6px;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
+#filter-modal .modal-body hr {
+    margin: 4px 0px;
+}
+
+#filter-modal .modal-body button {
+    font-size: 14px;
+    width: 100px;
+    margin: 16px;
 }
 
 #filter-modal .modal-body .btn-active {
-    background-color: var(--primary);
-    border-color: var(--primary);
     color: var(--primary-contrast);
-    box-shadow: 0 4px 14px rgba(91, 91, 240, 0.3);
+    background-color: var(--primary);
 }
 
-#filter-modal .modal-body .btn i {
+#filter-modal .modal-body button i {
     margin-right: 8px;
 }
 
-#filter-modal .modal-footer .btn {
-    border-radius: var(--radius-pill);
-    padding: 8px 28px;
-    font-weight: 600;
+#filter-modal .modal-footer button {
+    width: 120px;
 }
-
-@property(scoped) .noop {}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-</content>

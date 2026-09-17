@@ -1,92 +1,33 @@
-/* ============================================================
-   Dashboard — profile card + interested property list
-   (class names match dashboard.php markup exactly)
-   ============================================================ */
-
-/* ---------- Profile header ---------- */
-
-.my-profile {
-    padding-top: 8px;
-}
-
-.my-profile h1 {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 24px;
-}
-
-.profile-card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 28px;
-}
-
-.profile-img-container {
-    text-align: center;
+@media (max-width: 768px) {
+    .profile-img-container {
+        text-align: center;
+        padding-bottom: 32px;
+    }
 }
 
 .profile-img {
     color: var(--text-muted);
-    font-size: 72px;
+    font-size: 75px;
+    text-align: center;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background-color: var(--surface-2);
-    height: 108px;
-    width: 108px;
-    line-height: 108px;
-    box-shadow: var(--shadow-sm);
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
 }
 
 .profile .name {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-}
-
-.profile .email,
-.profile .phone,
-.profile .college {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-top: 2px;
+    font-weight: bold;
 }
 
 .edit-profile {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--primary);
+    font-size: 10px;
     text-decoration: underline;
     cursor: pointer;
 }
 
-.edit-profile:hover {
-    color: var(--primary-hover);
-}
-
-@media (max-width: 768px) {
-    .profile-img-container {
-        text-align: center;
-        padding-bottom: 20px;
-    }
-}
-
-/* ---------- My interested properties ---------- */
-
 .my-interested-properties {
     background-color: var(--surface-2);
-    border-radius: var(--radius-lg);
-    margin-top: 40px;
-    padding: 32px 24px;
-}
-
-.my-interested-properties h1 {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 24px;
 }
 
 .property-card {
@@ -94,20 +35,17 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 15px 0px;
-    margin: 0px auto 20px;
+    margin: 20px auto;
     box-shadow: var(--shadow-md);
-    transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 
 .property-card:focus,
 .property-card:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
 }
 
 .image-container {
     text-align: center;
-    align-self: center;
 }
 
 @media (max-width: 768px) {
@@ -119,34 +57,27 @@
 .image-container img {
     width: 100%;
     max-width: 300px;
-    border-radius: var(--radius-sm);
-    object-fit: cover;
 }
 
 .star-container i {
-    color: var(--rating);
-    font-size: 11px;
-    margin-right: 4px;
+    color: var(--heart);
+    font-size: 10px;
+    margin-right: 6px;
 }
 
 .interested-container {
-    text-align: right;
+    text-align: center;
+    padding: 8px 16px;
 }
 
 .interested-container i {
     color: var(--heart);
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
-    transition: transform var(--dur) var(--ease);
-}
-
-.interested-container i:hover {
-    transform: scale(1.15);
 }
 
 .interested-text {
     font-size: 10px;
-    color: var(--text-muted);
 }
 
 .detail-container {
@@ -155,7 +86,7 @@
 
 .property-name {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .property-address {
@@ -166,7 +97,6 @@
 
 .property-gender img {
     width: 40px;
-    object-fit: contain;
 }
 
 .rent-container {
@@ -176,7 +106,7 @@
 
 .rent {
     font-size: 18px;
-    font-weight: 800;
+    font-weight: bold;
     padding-right: 10px;
 }
 
@@ -187,17 +117,7 @@
 
 .button-container .btn {
     font-size: 14px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-sm);
     width: 140px;
     float: right;
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--primary-contrast);
-    font-weight: 600;
-    box-shadow: 0 4px 14px rgba(91, 91, 240, 0.28);
-}
-
-.button-container .btn:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
 }

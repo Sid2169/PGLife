@@ -141,8 +141,6 @@ function PropertyListApp() {
                         if (json.city && json.city.name) {
                             const crumb = document.getElementById("city-breadcrumb");
                             if (crumb) crumb.textContent = json.city.name;
-                            const head = document.getElementById("city-breadcrumb-2");
-                            if (head) head.textContent = json.city.name;
                             document.title = "Best PG's in " + json.city.name + " | PG Life";
                         }
                     } else {
