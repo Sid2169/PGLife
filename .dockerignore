@@ -1,0 +1,10 @@
+.git
+.gitignore
+solutions
+.env
+.env.example
+*.md
+Dockerfile
+docker-compose.yml
+railway.json
+deploy

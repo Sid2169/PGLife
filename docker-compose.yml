@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${DB_NAME:-pglife}
+      MYSQL_USER: ${DB_USER:-pglife}
+      MYSQL_PASSWORD: ${DB_PASS:-changeme}
+    volumes:
+      - db_data:/var/lib/mysql
+      # Imported automatically the first time the volume is created.
+      - ./pglife.sql:/docker-entrypoint-initdb.d/01-pglife.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  web:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-pglife}
+      DB_USER: ${DB_USER:-pglife}
+      DB_PASS: ${DB_PASS:-changeme}
+      APP_ENV: production
+    restart: unless-stopped
+
+volumes:
+  db_data:
