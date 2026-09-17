@@ -1,8 +1,11 @@
 FROM php:8.2-apache
 
 # mysqli is required by the app; headers lets us set security headers.
+# Force a single MPM (mpm_prefork, required by mod_php) so Apache does not fail
+# with "More than one MPM loaded".
 RUN docker-php-ext-install mysqli \
-    && a2enmod rewrite headers
+    && (a2dismod mpm_event mpm_worker 2>/dev/null || true) \
+    && a2enmod mpm_prefork rewrite headers
 
 # The stock image sets "AllowOverride None" for /var/www, which would ignore our
 # .htaccess hardening (and expose pglife.sql). Enable it for the web root.
