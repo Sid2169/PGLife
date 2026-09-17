@@ -15,8 +15,9 @@ require "includes/functions.php";
 <body>
     <?php include "includes/header.php"; ?>
 
-    <div class="hero-image">
-        <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false">
+    <main id="main-content" tabindex="-1">
+    <section class="hero-image" aria-labelledby="home-heading">
+        <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000" data-pause="false" aria-hidden="true">
             <div class="carousel-inner">
                 <div class="carousel-item hero-bg-1 active"></div>
                 <div class="carousel-item hero-bg-2"></div>
@@ -25,58 +26,63 @@ require "includes/functions.php";
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2>Make yourself at home</h2>
+            <span class="eyebrow">A place to belong</span>
+            <h1 id="home-heading">Make yourself<br>at home</h1>
             <p>Find safe, affordable and fully furnished PGs near your college.</p>
-            <form class="search-bar" role="form" method="get" action="property_list.php">
+            <form class="search-bar" role="search" method="get" action="property_list.php">
+                <label for="city-search">Where would you like to live?</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="city" placeholder="Search your city, e.g. Mumbai" />
+                    <input type="text" class="form-control" id="city-search" name="city" placeholder="Search your city, e.g. Mumbai" />
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-search" aria-label="Search">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search" aria-hidden="true"></i><span>Search</span>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+        <button type="button" class="carousel-pause" data-carousel="#home-carousel" aria-controls="home-carousel" aria-pressed="false">Pause photos</button>
+    </section>
 
-    <div class="page-container">
-        <h1 class="home-title">Happiness per square foot</h1>
-        <div class="city-tiles row">
-            <div class="city-tile col-6 col-md-4">
+    <section class="page-container home-cities" aria-labelledby="cities-heading">
+        <span class="eyebrow">Explore our cities</span>
+        <h2 class="home-title" id="cities-heading">Happiness per square foot</h2>
+        <div class="city-tiles">
+            <div class="city-tile">
                 <a href="property_list.php?city=Delhi">
                     <div class="city-tile-image">
-                        <img src="img/delhi.png" alt="Delhi" />
+                        <img src="img/delhi.png" alt="" />
                     </div>
                     <p>PG in Delhi</p>
                 </a>
             </div>
-            <div class="city-tile col-6 col-md-4">
+            <div class="city-tile">
                 <a href="property_list.php?city=Mumbai">
                     <div class="city-tile-image">
-                        <img src="img/mumbai.png" alt="Mumbai" />
+                        <img src="img/mumbai.png" alt="" />
                     </div>
                     <p>PG in Mumbai</p>
                 </a>
             </div>
-            <div class="city-tile col-6 col-md-4">
+            <div class="city-tile">
                 <a href="property_list.php?city=Bengaluru">
                     <div class="city-tile-image">
-                        <img src="img/bangalore.png" alt="Bengaluru" />
+                        <img src="img/bangalore.png" alt="" />
                     </div>
                     <p>PG in Bengaluru</p>
                 </a>
             </div>
-            <div class="city-tile col-6 col-md-4">
+            <div class="city-tile">
                 <a href="property_list.php?city=Hyderabad">
                     <div class="city-tile-image">
-                        <img src="img/hyderabad.png" alt="Hyderabad" />
+                        <img src="img/hyderabad.png" alt="" />
                     </div>
                     <p>PG in Hyderabad</p>
                 </a>
             </div>
         </div>
-    </div>
+    </section>
+    </main>
 
     <?php
     include "includes/signup_modal.php";

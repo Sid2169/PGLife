@@ -47,7 +47,13 @@ if ($initial_city == "") {
         </ol>
     </nav>
 
-    <div id="property-list-app" class="page-container"></div>
+    <main id="main-content" class="page-container" tabindex="-1">
+        <div class="page-heading">
+            <span class="eyebrow">Find your next home</span>
+            <h1>PGs in <?php echo e($initial_city); ?></h1>
+        </div>
+        <div id="property-list-app"></div>
+    </main>
 
     <?php
     include "includes/signup_modal.php";
