@@ -108,11 +108,19 @@ function initCarouselAccessibility() {
         function setPaused(value) {
             paused = value;
             $carousel.carousel(paused ? "pause" : "cycle");
+            if (paused) {
+                /* Bootstrap 4 schedules a restart after touch gestures. */
+                clearTimeout($carousel.data("bs.carousel").touchTimeout);
+            }
             button.setAttribute("aria-pressed", paused ? "true" : "false");
         }
 
         button.addEventListener("click", function () { setPaused(!paused); });
+        /* WAI-ARIA's carousel pattern requires explicit resume after focus. */
         $carousel.on("focusin", function () { setPaused(true); });
+        $carousel.on("touchend pointerup", function () {
+            if (paused) { setPaused(true); }
+        });
         $carousel.on("click", "[data-slide], [data-slide-to]", function () {
             /* Bootstrap may restart cycling when selecting the active photo. */
             if (paused) { setTimeout(function () { setPaused(true); }, 0); }
