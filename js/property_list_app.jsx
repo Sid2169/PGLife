@@ -55,7 +55,7 @@ function PropertyCard({ property, onToggleInterested }) {
                         <img src={property.image} alt={property.name} className="d-block m-auto" />
                     ) : (
                         <div style={{ padding: "40px" }}>
-                            <i className="fas fa-image" style={{ color: "#d0d0d0", fontSize: "48px" }}></i>
+                            <i className="fas fa-image" style={{ color: "var(--text-muted)", fontSize: "48px" }}></i>
                         </div>
                     )}
                 </a>

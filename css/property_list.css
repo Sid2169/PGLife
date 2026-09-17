@@ -9,9 +9,10 @@
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    border: 1px solid #646870;
+    border: 1px solid var(--border);
     padding: 6px;
     margin-right: 8px;
+    background-color: var(--image-bg);
 }
 
 @media (max-width: 768px) {
@@ -25,24 +26,27 @@
     font-size: 13px;
     padding: 4px 10px;
     margin: 2px 4px;
-    border: 1px solid #646870;
-    border-radius: 16px;
-    background: #ffffff;
-    color: #333333;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--text);
     cursor: pointer;
 }
 
 .filter-bar .filter-option.active {
-    background-color: #343a40;
-    color: #ffffff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-contrast);
 }
 
 .budget-input {
     width: 80px;
     padding: 4px 6px;
     font-size: 13px;
-    border: 1px solid #646870;
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    color: var(--text);
 }
 
 .ajax-spinner {
@@ -52,21 +56,22 @@
 
 .listing-count {
     font-size: 14px;
-    color: #777777;
+    color: var(--text-muted);
     margin-bottom: 12px;
 }
 
 .property-card {
-    background-color: #ffffff;
-    border-radius: 2px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     padding: 15px 0px;
     margin: 0px auto 20px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-md);
 }
 
 .property-card:focus,
 .property-card:hover {
-    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-lg);
 }
 
 .image-container {
@@ -85,7 +90,7 @@
 }
 
 .star-container i {
-    color: #EA322E;
+    color: var(--heart);
     font-size: 10px;
     margin-right: 6px;
 }
@@ -95,7 +100,7 @@
 }
 
 .interested-container i {
-    color: #EA322E;
+    color: var(--heart);
     font-size: 20px;
     cursor: pointer;
 }
@@ -114,7 +119,7 @@
 }
 
 .property-address {
-    color: #6f6f6f;
+    color: var(--text-muted);
     font-size: 13px;
     padding-bottom: 5px;
 }
@@ -135,13 +140,13 @@
 }
 
 .rent-unit {
-    color: #6f6f6f;
+    color: var(--text-muted);
     font-size: 12px;
 }
 
 .button-container .btn {
     font-size: 14px;
-    border-radius: 0px;
+    border-radius: var(--radius-sm);
     width: 140px;
     float: right;
 }
@@ -162,7 +167,7 @@
 }
 
 #filter-modal .modal-body h5 {
-    color: #777777;
+    color: var(--text-muted);
 }
 
 #filter-modal .modal-body hr {
@@ -176,8 +181,8 @@
 }
 
 #filter-modal .modal-body .btn-active {
-    color: #fff;
-    background-color: #343a40;
+    color: var(--primary-contrast);
+    background-color: var(--primary);
 }
 
 #filter-modal .modal-body button i {

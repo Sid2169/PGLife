@@ -9,11 +9,11 @@
 
 .property-amenities,
 .property-rating {
-    background-color: #fcfaf7;
+    background-color: var(--surface-2);
 }
 
 .star-container i {
-    color: #EA322E;
+    color: var(--heart);
     font-size: 12px;
     margin-right: 6px;
 }
@@ -30,7 +30,7 @@
 }
 
 .interested-container i {
-    color: #EA322E;
+    color: var(--heart);
     font-size: 20px;
     cursor: pointer;
 }
@@ -55,7 +55,7 @@
 }
 
 .property-address {
-    color: #6f6f6f;
+    color: var(--text-muted);
     font-size: 16px;
     padding-bottom: 5px;
 }
@@ -82,13 +82,13 @@
 }
 
 .rent-unit {
-    color: #6f6f6f;
+    color: var(--text-muted);
     font-size: 12px;
 }
 
 .button-container .btn {
     font-size: 14px;
-    border-radius: 0px;
+    border-radius: var(--radius-sm);
     width: 140px;
     float: right;
 }
@@ -126,12 +126,12 @@
 }
 
 .rating-criteria-star-container i {
-    color: #66C2BD;
+    color: var(--rating);
     font-size: 12px;
 }
 
 .rating-circle {
-    background-color: #66C2BD;
+    background-color: var(--rating);
     color: white;
     text-align: center;
     height: 160px;
@@ -150,7 +150,7 @@
 }
 
 .testimonial-block {
-    background-color: #fcfaf7;
+    background-color: var(--surface-2);
     padding: 0px 160px 24px;
     margin-top: 80px;
 }
@@ -173,7 +173,7 @@
 }
 
 .testimonial-text {
-    color: #777777;
+    color: var(--text-muted);
     text-align: center;
     position: relative;
 }
@@ -190,7 +190,7 @@
 }
 
 .testimonial-name {
-    color: #2F2E2E;
+    color: var(--text);
     text-align: right;
     font-weight: bold;
     margin-top: 12px;
